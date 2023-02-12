@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-    private float hudRegenerateCoefficient = 1;
+    public float hudRegenerateCoefficient = 1;
 
     protected int maxMana;
     protected float currentMana;
@@ -40,7 +40,7 @@ public class ManaBar : MonoBehaviour
     public void SetCurrentMana(float mana)
     {
         currentMana = mana;
-        slider.value = Mathf.Lerp(slider.value, currentMana, Time.deltaTime * hudRegenerateCoefficient);
+        slider.value = Mathf.Lerp(slider.value, currentMana, Time.deltaTime * hudRegenerateCoefficient * maxMana /(slider.value * currentMana));
 
         fill.color = gradient.Evaluate(currentMana / maxMana);
     }

@@ -39,15 +39,9 @@ public class HealthBar : MonoBehaviour
 
     public void SetCurrentHealth(float health)
     {
-        int plusMinus = currentHealth < health ? 1 : -1;
-
         currentHealth = health;
         slider.value = Mathf.Lerp(slider.value, currentHealth, Time.deltaTime * hudRegenerateCoefficient * maxHealth/ (slider.value * currentHealth));
 
         fill.color = gradient.Evaluate(currentHealth / maxHealth);
-    }
-    void Update()
-    {
-        
     }
 }

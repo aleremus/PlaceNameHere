@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireWhip : MagicSystem
+public class FireWhip : Spell
 {
     [SerializeField, Range(5, 20)] int amountOfSegments;
     [SerializeField, Range(1f, 10f)] int costOfSegment;
     [SerializeField, Range(.5f, 5f)] float duration;
-    protected override void CastSpell()
+    public override void Cast()
     {
+        base.Cast();
         StartCoroutine(SpawnWhipSegment());
     }
 
@@ -18,7 +19,7 @@ public class FireWhip : MagicSystem
         {
             if (playerCharactersticsScript.IsEnoughMana(costOfSegment))
             {
-                Instantiate(spellPrefab, player.transform.position, player.transform.rotation);
+                Instantiate(spellPrefab, target.transform.position, target.transform.rotation);
                 playerCharactersticsScript.SpendMana(costOfSegment);
             }
             else

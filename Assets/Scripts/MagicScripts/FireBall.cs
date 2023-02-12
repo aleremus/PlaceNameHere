@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBall : MagicSystem
+public class FireBall : Spell
 {
     
-    protected override void CastSpell()
+    public override void Cast()
     {
-        Instantiate(spellPrefab, player.transform.position, player.transform.rotation);
+        base.Cast();
+        Instantiate(spellPrefab, target.transform.position, target.transform.rotation);
     }
 }
